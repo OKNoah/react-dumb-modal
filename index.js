@@ -1,5 +1,7 @@
 var React = require('react')
 
+var __CLIENT__ = __CLIENT__ || true
+
 var styles = {
   modal: {
     position: 'absolute',
@@ -37,11 +39,15 @@ module.exports = React.createClass({
   },
 
   componentWillMount: function () {
-    document.addEventListener('keydown', this.keyPress)
+    if (__CLIENT__) {
+      document.addEventListener('keydown', this.keyPress)
+    }
   },
 
-  componentWillUnmount: function (){
-    document.removeEventListener('keydown', this.keyPress)
+  componentWillUnmount: function () {
+    if (__CLIENT__) {
+      document.removeEventListener('keydown', this.keyPress)
+    }
   },
 
   keyPress: function (e){
